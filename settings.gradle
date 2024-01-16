@@ -21,8 +21,9 @@ dependencyResolutionManagement {
 include ':app'
 include ':test1'
 include ':library'
+include ':manifestk_xxpermissions'
 include ':SwiftKit'
 project(':SwiftKit').projectDir = new File("C:\\Users\\${System.getenv().get("USERNAME")}\\Documents\\GitHub\\SwiftKit")
 include ':SwiftKit:basick'
 
-include ':manifestk_xxpermissions'
+
