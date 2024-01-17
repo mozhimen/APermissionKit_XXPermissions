@@ -22,6 +22,7 @@ include ':app'
 include ':test1'
 include ':library'
 include ':manifestk_xxpermissions'
+//SwiftKit
 include ':SwiftKit'
 project(':SwiftKit').projectDir = new File("C:\\Users\\${System.getenv().get("USERNAME")}\\Documents\\GitHub\\SwiftKit")
 include ':SwiftKit:basick'

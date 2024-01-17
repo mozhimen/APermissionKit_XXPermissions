@@ -2,7 +2,8 @@ package com.hjq.permissions;
 
 import android.content.Context;
 import android.content.res.XmlResourceParser;
-import android.support.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
 import org.xmlpull.v1.XmlPullParserException;

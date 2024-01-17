@@ -1,7 +1,8 @@
 package com.hjq.permissions;
 
 import android.Manifest;
-import android.support.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 
 /**
  *    author : Android 轮子哥
