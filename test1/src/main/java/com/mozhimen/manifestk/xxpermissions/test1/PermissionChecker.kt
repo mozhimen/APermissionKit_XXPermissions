@@ -1,8 +1,11 @@
 package com.mozhimen.manifestk.xxpermissions.test1
 
+import android.annotation.SuppressLint
 import android.content.Context
 import com.mozhimen.basick.elemk.commons.I_Listener
-import com.mozhimen.manifestk.xxpermissions.XXPermissionsUtil
+import com.mozhimen.manifestk.xxpermissions.XXPermissionsCheckUtil
+import com.mozhimen.manifestk.xxpermissions.XXPermissionsNavHostUtil
+import com.mozhimen.manifestk.xxpermissions.XXPermissionsRequestUtil
 
 /**
  * @ClassName PermissionChecker
@@ -23,34 +26,35 @@ object PermissionChecker {
 
     @JvmStatic
     fun startPermissionInstall(context: Context, allGrant: I_Listener? = null) {
-        if (XXPermissionsUtil.hasInstallPermission(context)) {
+        if (XXPermissionsCheckUtil.hasInstallPermission(context)) {
             allGrant?.invoke()
         } else {
 //            showDialogInstallPermission(context) {
-            XXPermissionsUtil.requestInstallPermission(context,
+            XXPermissionsRequestUtil.requestInstallPermission(context,
                 onGranted = {
                     allGrant?.invoke()
                 },
                 onDenied = {
-                    XXPermissionsUtil.startSettingInstall(context)
+                    XXPermissionsNavHostUtil.startSettingInstall(context)
                 }
             )
 //            }
         }
     }
 
+    @SuppressLint("MissingPermission")
     @JvmStatic
     fun startPermissionReadWrite(context: Context, allGrant: I_Listener? = null) {
-        if (XXPermissionsUtil.hasReadWritePermission(context)) {
+        if (XXPermissionsCheckUtil.hasReadWritePermission(context)) {
             allGrant?.invoke()
         } else {
 //            showDialogReadWritePermission(context) {
-            XXPermissionsUtil.requestReadWritePermission(context,
+            XXPermissionsRequestUtil.requestReadWritePermission(context,
                 onGranted = {
                     allGrant?.invoke()
                 },
                 onDenied = {
-                    XXPermissionsUtil.startSettingManageStorage(context)
+                    XXPermissionsNavHostUtil.startSettingManageStorage(context)
                 }
             )
 //            }
