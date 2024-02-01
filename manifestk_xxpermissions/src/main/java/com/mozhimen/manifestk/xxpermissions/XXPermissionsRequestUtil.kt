@@ -53,20 +53,24 @@ object XXPermissionsRequestUtil : IUtilK {
     @RequiresPermission(allOf = [CPermission.MANAGE_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE])
     @AManifestKRequire(CPermission.MANAGE_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE, CApplication.REQUEST_LEGACY_EXTERNAL_STORAGE)
     fun requestReadWritePermission(context: Context, onGranted: I_Listener, onDenied: I_Listener) {
-        if (UtilKApplicationInfo.getTargetSdkVersion(context) >= CVersCode.V_30_11_R) {
-            XXPermissions.with(context) // 适配分区存储应该这样写
-                //.permission(Permission.Group.STORAGE)
-                // 不适配分区存储应该这样写
-                .permission(Permission.MANAGE_EXTERNAL_STORAGE)
+        try {
+            if (UtilKApplicationInfo.getTargetSdkVersion(context) >= CVersCode.V_30_11_R) {
+                XXPermissions.with(context) // 适配分区存储应该这样写
+                    //.permission(Permission.Group.STORAGE)
+                    // 不适配分区存储应该这样写
+                    .permission(Permission.MANAGE_EXTERNAL_STORAGE)
 //            .interceptor(PermissionInterceptor())
-                .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied.invoke() }
-        } else /*if (UtilKApplicationInfo.getTargetSdkVersion(this)!! >= CVersCode.V_23_6_M)*/
-            XXPermissions.with(context) // 适配分区存储应该这样写
-                //.permission(Permission.Group.STORAGE)
-                // 不适配分区存储应该这样写
-                .permission(Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE)
+                    .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied.invoke() }
+            } else /*if (UtilKApplicationInfo.getTargetSdkVersion(this)!! >= CVersCode.V_23_6_M)*/
+                XXPermissions.with(context) // 适配分区存储应该这样写
+                    //.permission(Permission.Group.STORAGE)
+                    // 不适配分区存储应该这样写
+                    .permission(Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE)
 //            .interceptor(PermissionInterceptor())
-                .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied.invoke() }
+                    .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied.invoke() }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     //申请安装权限
@@ -74,11 +78,13 @@ object XXPermissionsRequestUtil : IUtilK {
     @RequiresPermission(Permission.REQUEST_INSTALL_PACKAGES)
     @AManifestKRequire(Permission.REQUEST_INSTALL_PACKAGES)
     fun requestInstallPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener) {
-        XXPermissions.with(context)
-            .permission(Permission.REQUEST_INSTALL_PACKAGES)
+        try {
+            XXPermissions.with(context)
+                .permission(Permission.REQUEST_INSTALL_PACKAGES)
 //            .interceptor(PermissionInterceptor())
-            .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied.invoke() }
+                .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied.invoke() }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
-
-
 }
