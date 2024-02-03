@@ -7,6 +7,7 @@ import com.hjq.permissions.XXPermissions
 import com.mozhimen.basick.manifestk.annors.AManifestKRequire
 import com.mozhimen.basick.manifestk.cons.CApplication
 import com.mozhimen.basick.manifestk.cons.CPermission
+import com.mozhimen.basick.manifestk.cons.CUseFeature
 
 /**
  * @ClassName XXPermissionCheckUtil
@@ -44,4 +45,10 @@ object XXPermissionsCheckUtil {
     fun hasInstallPermission(context: Context): Boolean =
         XXPermissions.isGranted(context, Permission.REQUEST_INSTALL_PACKAGES)
 
+    //是否有相机权限
+    @JvmStatic
+    @RequiresPermission(allOf = [CPermission.CAMERA])
+    @AManifestKRequire(CPermission.CAMERA, CUseFeature.HARDWARE_CAMERA, CUseFeature.HARDWARE_CAMERA_AUTOFOCUS, CUseFeature.HARDWARE_CAMERA_AUTOFOCUS, CUseFeature.HARDWARE_CAMERA_ANY)
+    fun hasCameraPermission(context: Context): Boolean =
+        XXPermissions.isGranted(context, Permission.CAMERA)
 }

@@ -87,4 +87,18 @@ object XXPermissionsRequestUtil : IUtilK {
             e.printStackTrace()
         }
     }
+
+    //申请相机权限
+    @JvmStatic
+    @RequiresPermission(Permission.CAMERA)
+    fun requestCameraPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener) {
+        try {
+            XXPermissions.with(context)
+                .permission(Permission.CAMERA)
+//            .interceptor(PermissionInterceptor())
+                .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied.invoke() }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 }
