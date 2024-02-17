@@ -39,6 +39,8 @@ afterEvaluate {
 }
 
 dependencies {
+    implementation 'androidx.annotation:annotation:1.7.1'
+    implementation 'androidx.fragment:fragment:1.6.2'
     // noinspection GradleCompatible
     compileOnly 'com.android.support:support-fragment:24.2.0'
 }
