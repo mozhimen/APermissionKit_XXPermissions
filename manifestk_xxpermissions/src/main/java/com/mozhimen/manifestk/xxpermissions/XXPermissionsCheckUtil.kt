@@ -1,13 +1,19 @@
 package com.mozhimen.manifestk.xxpermissions
 
 import android.content.Context
+import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
-import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
-import com.mozhimen.basick.manifestk.annors.AManifestKRequire
-import com.mozhimen.basick.manifestk.cons.CApplication
+import com.mozhimen.basick.elemk.android.os.cons.CVersCode
+import com.mozhimen.basick.lintk.optins.permission.OPermission_CAMERA
+import com.mozhimen.basick.lintk.optins.permission.OPermission_GET_INSTALLED_APPS
+import com.mozhimen.basick.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
+import com.mozhimen.basick.lintk.optins.permission.OPermission_POST_NOTIFICATIONS
+import com.mozhimen.basick.lintk.optins.permission.OPermission_READ_EXTERNAL_STORAGE
+import com.mozhimen.basick.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
+import com.mozhimen.basick.lintk.optins.permission.OPermission_WRITE_EXTERNAL_STORAGE
 import com.mozhimen.basick.manifestk.cons.CPermission
-import com.mozhimen.basick.manifestk.cons.CUseFeature
+import com.mozhimen.basick.utilk.android.os.UtilKBuildVersion
 
 /**
  * @ClassName XXPermissionCheckUtil
@@ -19,36 +25,41 @@ import com.mozhimen.basick.manifestk.cons.CUseFeature
 object XXPermissionsCheckUtil {
     //是否有获取程序包名权限
     @JvmStatic
-    @RequiresPermission(Permission.GET_INSTALLED_APPS)
-    @AManifestKRequire(Permission.GET_INSTALLED_APPS)
+    @RequiresPermission(CPermission.GET_INSTALLED_APPS)
+    @OPermission_GET_INSTALLED_APPS
     fun hasInstalledAppsPermission(context: Context): Boolean =
-        XXPermissions.isGranted(context, Permission.GET_INSTALLED_APPS)
+        XXPermissions.isGranted(context, CPermission.GET_INSTALLED_APPS)
 
     //是否有通知权限
     @JvmStatic
-    @RequiresPermission(Permission.POST_NOTIFICATIONS)
-    @AManifestKRequire(Permission.POST_NOTIFICATIONS)
+    @RequiresPermission(CPermission.POST_NOTIFICATIONS)
+    @OPermission_POST_NOTIFICATIONS
     fun hasPostNotificationPermission(context: Context): Boolean =
-        XXPermissions.isGranted(context, Permission.POST_NOTIFICATIONS)
+        if (UtilKBuildVersion.isAfterV_33_13_TIRAMISU()) XXPermissions.isGranted(context, CPermission.POST_NOTIFICATIONS) else true
 
     //是否有读写权限
     @JvmStatic
-    @RequiresPermission(allOf = [CPermission.MANAGE_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE])
-    @AManifestKRequire(CPermission.MANAGE_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE, CApplication.REQUEST_LEGACY_EXTERNAL_STORAGE)
+    @RequiresPermission(allOf = [CPermission.MANAGE_EXTERNAL_STORAGE, CPermission.WRITE_EXTERNAL_STORAGE, CPermission.READ_EXTERNAL_STORAGE])
+    @OPermission_READ_EXTERNAL_STORAGE
+    @OPermission_WRITE_EXTERNAL_STORAGE
+    @OPermission_MANAGE_EXTERNAL_STORAGE
     fun hasReadWritePermission(context: Context): Boolean =
-        XXPermissions.isGranted(context, Permission.MANAGE_EXTERNAL_STORAGE)
+        if (UtilKBuildVersion.isAfterV_30_11_R())
+            XXPermissions.isGranted(context, CPermission.MANAGE_EXTERNAL_STORAGE)
+        else
+            XXPermissions.isGranted(context, CPermission.READ_EXTERNAL_STORAGE, CPermission.WRITE_EXTERNAL_STORAGE)
 
     //是否有安装权限
     @JvmStatic
-    @RequiresPermission(Permission.REQUEST_INSTALL_PACKAGES)
-    @AManifestKRequire(Permission.REQUEST_INSTALL_PACKAGES)
+    @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
+    @OPermission_REQUEST_INSTALL_PACKAGES
     fun hasInstallPermission(context: Context): Boolean =
-        XXPermissions.isGranted(context, Permission.REQUEST_INSTALL_PACKAGES)
+        if (UtilKBuildVersion.isAfterV_23_6_M()) XXPermissions.isGranted(context, CPermission.REQUEST_INSTALL_PACKAGES) else true
 
     //是否有相机权限
     @JvmStatic
     @RequiresPermission(allOf = [CPermission.CAMERA])
-    @AManifestKRequire(CPermission.CAMERA, CUseFeature.HARDWARE_CAMERA, CUseFeature.HARDWARE_CAMERA_AUTOFOCUS, CUseFeature.HARDWARE_CAMERA_AUTOFOCUS, CUseFeature.HARDWARE_CAMERA_ANY)
+    @OPermission_CAMERA
     fun hasCameraPermission(context: Context): Boolean =
-        XXPermissions.isGranted(context, Permission.CAMERA)
+        XXPermissions.isGranted(context, CPermission.CAMERA)
 }

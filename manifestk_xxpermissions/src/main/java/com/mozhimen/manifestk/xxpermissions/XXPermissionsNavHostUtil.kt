@@ -2,10 +2,8 @@ package com.mozhimen.manifestk.xxpermissions
 
 import android.annotation.SuppressLint
 import android.content.Context
-import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
-import com.mozhimen.basick.elemk.android.os.cons.CVersCode
-import com.mozhimen.basick.manifestk.annors.AManifestKRequire
+import com.mozhimen.basick.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
 import com.mozhimen.basick.manifestk.cons.CPermission
 import com.mozhimen.basick.utilk.android.app.UtilKLaunchActivity
 
@@ -19,8 +17,9 @@ import com.mozhimen.basick.utilk.android.app.UtilKLaunchActivity
 object XXPermissionsNavHostUtil {
 
     //去设置页面详情页
+
+    @OPermission_MANAGE_EXTERNAL_STORAGE
     @RequiresPermission(CPermission.MANAGE_EXTERNAL_STORAGE)
-    @AManifestKRequire(CPermission.MANAGE_EXTERNAL_STORAGE)
     @JvmStatic
     fun startSettingManageStorage(context: Context) {
         UtilKLaunchActivity.startManageAllFilesAccess(context)
