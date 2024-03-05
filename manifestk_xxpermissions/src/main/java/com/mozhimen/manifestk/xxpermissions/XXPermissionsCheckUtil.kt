@@ -5,6 +5,8 @@ import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import com.hjq.permissions.XXPermissions
 import com.mozhimen.basick.elemk.android.os.cons.CVersCode
+import com.mozhimen.basick.lintk.optins.permission.OPermission_ACCESS_COARSE_LOCATION
+import com.mozhimen.basick.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
 import com.mozhimen.basick.lintk.optins.permission.OPermission_CAMERA
 import com.mozhimen.basick.lintk.optins.permission.OPermission_GET_INSTALLED_APPS
 import com.mozhimen.basick.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
@@ -62,4 +64,12 @@ object XXPermissionsCheckUtil {
     @OPermission_CAMERA
     fun hasCameraPermission(context: Context): Boolean =
         XXPermissions.isGranted(context, CPermission.CAMERA)
+
+    //是否有位置权限
+    @JvmStatic
+    @RequiresPermission(allOf = [CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION])
+    @OPermission_ACCESS_COARSE_LOCATION
+    @OPermission_ACCESS_FINE_LOCATION
+    fun hasLocationPermission(context: Context): Boolean =
+        XXPermissions.isGranted(context, CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION)
 }

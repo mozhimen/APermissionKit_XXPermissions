@@ -7,6 +7,8 @@ import com.hjq.permissions.XXPermissions
 import com.hjq.permissions.Permission
 import com.mozhimen.basick.elemk.android.os.cons.CVersCode
 import com.mozhimen.basick.elemk.commons.I_Listener
+import com.mozhimen.basick.lintk.optins.permission.OPermission_ACCESS_COARSE_LOCATION
+import com.mozhimen.basick.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
 import com.mozhimen.basick.lintk.optins.permission.OPermission_CAMERA
 import com.mozhimen.basick.lintk.optins.permission.OPermission_GET_INSTALLED_APPS
 import com.mozhimen.basick.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
@@ -108,6 +110,23 @@ object XXPermissionsRequestUtil : IUtilK {
         try {
             XXPermissions.with(context)
                 .permission(Permission.CAMERA)
+//            .interceptor(PermissionInterceptor())
+                .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied?.invoke() }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    //申请位置
+    @JvmStatic
+    @RequiresPermission(allOf = [CPermission.ACCESS_FINE_LOCATION, CPermission.ACCESS_COARSE_LOCATION])
+    @OPermission_ACCESS_COARSE_LOCATION
+    @OPermission_ACCESS_FINE_LOCATION
+    fun requestLocationPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+        try {
+            XXPermissions.with(context)
+                .permission(Permission.ACCESS_FINE_LOCATION)
+                .permission(Permission.ACCESS_COARSE_LOCATION)
 //            .interceptor(PermissionInterceptor())
                 .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied?.invoke() }
         } catch (e: Exception) {
