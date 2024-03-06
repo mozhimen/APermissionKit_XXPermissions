@@ -19,7 +19,7 @@ import com.mozhimen.basick.lintk.optins.permission.OPermission_WRITE_EXTERNAL_ST
 import com.mozhimen.basick.manifestk.cons.CPermission
 import com.mozhimen.basick.utilk.android.content.UtilKApplicationInfo
 import com.mozhimen.basick.utilk.android.os.UtilKBuildVersion
-import com.mozhimen.basick.utilk.bases.IUtilK
+import com.mozhimen.basick.utilk.commons.IUtilK
 
 /**
  * @ClassName HelperPermission
