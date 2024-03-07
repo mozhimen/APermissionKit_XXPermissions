@@ -37,7 +37,7 @@ dependencies {
     } else {
         implementation project(':SwiftKit:basick')
     }
-    implementation project(project.path.replace(project.name, '') +':library')
+    api project(project.path.replace(project.name, '') +':library')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
