@@ -16,7 +16,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
+import android.util.Log
+import com.mozhimen.basick.utilk.android.util.UtilKLog;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -654,10 +655,10 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
             }
 
             if (latLong[0] != 0 && latLong[1] != 0) {
-                Log.i("XXPermissions", "获取到图片的经纬度：" + filePath + "，" +  Arrays.toString(latLong));
-                Log.i("XXPermissions", "图片经纬度所在的地址：" + latLongToAddressString(latLong[0], latLong[1]));
+                UtilKLog.it("XXPermissions", "获取到图片的经纬度：" + filePath + "，" +  Arrays.toString(latLong));
+                UtilKLog.it("XXPermissions", "图片经纬度所在的地址：" + latLongToAddressString(latLong[0], latLong[1]));
             } else {
-                Log.i("XXPermissions", "该图片获取不到经纬度：" + filePath);
+                UtilKLog.it("XXPermissions", "该图片获取不到经纬度：" + filePath);
             }
         }
         cursor.close();
@@ -680,11 +681,11 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
                 }
                 addressString = strReturnedAddress.toString();
             } else {
-                Log.w("XXPermissions", "没有返回地址");
+                UtilKLog.wt("XXPermissions", "没有返回地址");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.w("XXPermissions", "无法获取到地址");
+            UtilKLog.wt("XXPermissions", "无法获取到地址");
         }
         return addressString;
     }
@@ -693,14 +694,14 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         @Override
         public void onSensorChanged(SensorEvent event) {
-            Log.w("onSensorChanged", "event = " + event);
+            UtilKLog.wt("onSensorChanged", "event = " + event);
             switch (event.sensor.getType()) {
                 case Sensor.TYPE_STEP_COUNTER:
-                    Log.w("XXPermissions", "开机以来当天总步数：" + event.values[0]);
+                    UtilKLog.wt("XXPermissions", "开机以来当天总步数：" + event.values[0]);
                     break;
                 case Sensor.TYPE_STEP_DETECTOR:
                     if (event.values[0] == 1) {
-                        Log.w("XXPermissions", "当前走了一步");
+                        UtilKLog.wt("XXPermissions", "当前走了一步");
                     }
                     break;
                 default:
@@ -710,7 +711,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
 
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
-            Log.w("onAccuracyChanged", String.valueOf(accuracy));
+            UtilKLog.wt("onAccuracyChanged", String.valueOf(accuracy));
         }
     };
 
@@ -747,7 +748,7 @@ public final class MainActivity extends AppCompatActivity implements View.OnClic
             }
 
             for (PackageInfo info : packageInfoList) {
-                Log.i("XXPermissions", "应用包名：" + info.packageName);
+                UtilKLog.it("XXPermissions", "应用包名：" + info.packageName);
             }
         } catch (Throwable t) {
             t.printStackTrace();
