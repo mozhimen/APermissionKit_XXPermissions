@@ -1,11 +1,10 @@
 package com.mozhimen.manifestk.xxpermissions
 
-import android.annotation.SuppressLint
 import android.content.Context
 import androidx.annotation.RequiresPermission
 import com.mozhimen.basick.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
 import com.mozhimen.basick.manifestk.cons.CPermission
-import com.mozhimen.basick.utilk.android.app.UtilKLaunchActivity
+import com.mozhimen.basick.utilk.android.app.UtilKActivityStart
 
 /**
  * @ClassName XXPermissionNavHostUtil
@@ -22,17 +21,17 @@ object XXPermissionsNavHostUtil {
     @RequiresPermission(CPermission.MANAGE_EXTERNAL_STORAGE)
     @JvmStatic
     fun startSettingManageStorage(context: Context) {
-        UtilKLaunchActivity.startManageAllFilesAccess(context)
+        UtilKActivityStart.startManageAllFilesAccessPermission(context)
     }
 
     //去设置未知源页
     @JvmStatic
     fun startSettingInstall(context: Context) {
-        UtilKLaunchActivity.startManageUnknownInstallSource(context)
+        UtilKActivityStart.startManageUnknownInstallSource(context)
     }
 
     @JvmStatic
     fun startSettingNotification(context: Context) {
-        UtilKLaunchActivity.startAppNotificationSettings(context)
+        UtilKActivityStart.startAppNotificationSettings(context)
     }
 }
