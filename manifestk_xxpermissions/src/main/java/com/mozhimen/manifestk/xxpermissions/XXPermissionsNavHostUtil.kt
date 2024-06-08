@@ -21,17 +21,17 @@ object XXPermissionsNavHostUtil {
     @RequiresPermission(CPermission.MANAGE_EXTERNAL_STORAGE)
     @JvmStatic
     fun startSettingManageStorage(context: Context) {
-        UtilKActivityStart.startManageAllFilesAccessPermission(context)
+        UtilKActivityStart.startSettingManageAllFilesAccessPermission(context)
     }
 
     //去设置未知源页
     @JvmStatic
     fun startSettingInstall(context: Context) {
-        UtilKActivityStart.startManageUnknownInstallSource(context)
+        UtilKActivityStart.startSettingManageUnknownInstallSource(context)
     }
 
     @JvmStatic
     fun startSettingNotification(context: Context) {
-        UtilKActivityStart.startAppNotificationSettings(context)
+        UtilKActivityStart.startSettingAppNotificationSettings(context)
     }
 }
