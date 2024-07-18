@@ -54,15 +54,15 @@ tasks.withType(Javadoc).configureEach {
     options.addStringOption('charSet', 'UTF-8')
 }
 
-tasks.register('sourcesJar', Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
+//tasks.register('sourcesJar', Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    classifier = 'sources'
+//}
 
-tasks.register('javadoc', Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
+//tasks.register('javadoc', Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
 
 //tasks.register('javadocJar', Jar) {
 //    dependsOn javadoc
