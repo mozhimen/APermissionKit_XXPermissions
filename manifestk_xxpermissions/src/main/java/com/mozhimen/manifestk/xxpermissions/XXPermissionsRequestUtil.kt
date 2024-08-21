@@ -64,7 +64,7 @@ object XXPermissionsRequestUtil : IUtilK {
     @OPermission_MANAGE_EXTERNAL_STORAGE
     fun requestReadWritePermission(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
-            if (UtilKApplicationInfo.getTargetSdkVersion_ofCxt(context) >= CVersCode.V_30_11_R) {
+            if (UtilKApplicationInfo.getTargetSdkVersion(context) >= CVersCode.V_30_11_R) {
                 XXPermissions.with(context) // 适配分区存储应该这样写
                     //.permission(Permission.Group.STORAGE)
                     // 不适配分区存储应该这样写
