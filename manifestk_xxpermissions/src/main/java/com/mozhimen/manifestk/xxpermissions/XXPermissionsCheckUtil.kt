@@ -16,6 +16,8 @@ import com.mozhimen.basick.lintk.optins.permission.OPermission_REQUEST_INSTALL_P
 import com.mozhimen.basick.lintk.optins.permission.OPermission_WRITE_EXTERNAL_STORAGE
 import com.mozhimen.basick.manifestk.cons.CPermission
 import com.mozhimen.basick.utilk.android.os.UtilKBuildVersion
+import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.basick.utilk.commons.IUtilK
 
 /**
  * @ClassName XXPermissionCheckUtil
@@ -24,7 +26,7 @@ import com.mozhimen.basick.utilk.android.os.UtilKBuildVersion
  * @Date 2024/1/22
  * @Version 1.0
  */
-object XXPermissionsCheckUtil {
+object XXPermissionsCheckUtil : IUtilK {
     //是否有获取程序包名权限
     @JvmStatic
     @RequiresPermission(CPermission.GET_INSTALLED_APPS)
@@ -37,7 +39,7 @@ object XXPermissionsCheckUtil {
     @RequiresPermission(CPermission.POST_NOTIFICATIONS)
     @OPermission_POST_NOTIFICATIONS
     fun hasPostNotificationPermission(context: Context): Boolean =
-        if (UtilKBuildVersion.isAfterV_33_13_TIRAMISU()) XXPermissions.isGranted(context, CPermission.POST_NOTIFICATIONS) else true
+        (if (UtilKBuildVersion.isAfterV_33_13_TIRAMISU()) XXPermissions.isGranted(context, CPermission.POST_NOTIFICATIONS) else true).also { UtilKLogWrapper.d(TAG, "hasPostNotificationPermission: ") }
 
     //是否有读写权限
     @JvmStatic
