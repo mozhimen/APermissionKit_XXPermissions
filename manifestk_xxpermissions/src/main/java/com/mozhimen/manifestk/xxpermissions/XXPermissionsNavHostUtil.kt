@@ -2,9 +2,9 @@ package com.mozhimen.manifestk.xxpermissions
 
 import android.content.Context
 import androidx.annotation.RequiresPermission
-import com.mozhimen.basick.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
-import com.mozhimen.basick.manifestk.cons.CPermission
-import com.mozhimen.basick.utilk.android.app.UtilKActivityStart
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.elemk.android.cons.CPermission
+import com.mozhimen.kotlin.utilk.android.app.UtilKActivityStart
 
 /**
  * @ClassName XXPermissionNavHostUtil

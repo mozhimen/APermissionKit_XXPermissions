@@ -1,23 +1,21 @@
 package com.mozhimen.manifestk.xxpermissions
 
 import android.content.Context
-import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import com.hjq.permissions.XXPermissions
-import com.mozhimen.basick.elemk.android.os.cons.CVersCode
-import com.mozhimen.basick.lintk.optins.permission.OPermission_ACCESS_COARSE_LOCATION
-import com.mozhimen.basick.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
-import com.mozhimen.basick.lintk.optins.permission.OPermission_CAMERA
-import com.mozhimen.basick.lintk.optins.permission.OPermission_GET_INSTALLED_APPS
-import com.mozhimen.basick.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
-import com.mozhimen.basick.lintk.optins.permission.OPermission_POST_NOTIFICATIONS
-import com.mozhimen.basick.lintk.optins.permission.OPermission_READ_EXTERNAL_STORAGE
-import com.mozhimen.basick.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
-import com.mozhimen.basick.lintk.optins.permission.OPermission_WRITE_EXTERNAL_STORAGE
-import com.mozhimen.basick.manifestk.cons.CPermission
-import com.mozhimen.basick.utilk.android.os.UtilKBuildVersion
-import com.mozhimen.basick.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.basick.utilk.commons.IUtilK
+import com.mozhimen.kotlin.elemk.android.cons.CPermission
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_COARSE_LOCATION
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_CAMERA
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_GET_INSTALLED_APPS
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_POST_NOTIFICATIONS
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_WRITE_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
  * @ClassName XXPermissionCheckUtil

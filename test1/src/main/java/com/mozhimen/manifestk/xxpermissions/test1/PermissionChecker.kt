@@ -2,7 +2,7 @@ package com.mozhimen.manifestk.xxpermissions.test1
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.mozhimen.basick.elemk.commons.I_Listener
+import com.mozhimen.kotlin.elemk.commons.I_Listener
 import com.mozhimen.manifestk.xxpermissions.XXPermissionsCheckUtil
 import com.mozhimen.manifestk.xxpermissions.XXPermissionsNavHostUtil
 import com.mozhimen.manifestk.xxpermissions.XXPermissionsRequestUtil
