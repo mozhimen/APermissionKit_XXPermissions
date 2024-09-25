@@ -32,10 +32,10 @@ android {
 }
 
 dependencies {
-    if (rootProject.name == "SwiftKit") {
-        implementation project(':basick')
+    if (rootProject.name == "KUtilKit") {
+        implementation project(':utilk_android')
     } else {
-        implementation project(':SwiftKit:basick')
+        implementation project(':KUtilKit:utilk_android')
     }
     api project(project.path.replace(project.name, '') +':library')
 
