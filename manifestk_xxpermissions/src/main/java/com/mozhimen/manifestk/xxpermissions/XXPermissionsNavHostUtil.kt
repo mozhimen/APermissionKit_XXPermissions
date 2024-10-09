@@ -16,7 +16,6 @@ import com.mozhimen.kotlin.utilk.android.app.UtilKActivityStart
 object XXPermissionsNavHostUtil {
 
     //去设置页面详情页
-
     @OPermission_MANAGE_EXTERNAL_STORAGE
     @RequiresPermission(CPermission.MANAGE_EXTERNAL_STORAGE)
     @JvmStatic

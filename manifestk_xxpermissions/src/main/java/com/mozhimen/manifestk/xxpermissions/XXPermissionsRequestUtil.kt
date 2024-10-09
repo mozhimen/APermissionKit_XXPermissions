@@ -80,6 +80,7 @@ object XXPermissionsRequestUtil : IUtilK {
                     .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied?.invoke() }
         } catch (e: Exception) {
             e.printStackTrace()
+            onDenied?.invoke()
         }
     }
 
@@ -96,6 +97,7 @@ object XXPermissionsRequestUtil : IUtilK {
                     .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied.invoke() }
             } catch (e: Exception) {
                 e.printStackTrace()
+                onDenied.invoke()
             }
         } else
             onGranted.invoke()
