@@ -46,7 +46,7 @@ object XXPermissionsRequestUtil : IUtilK {
     @RequiresPermission(CPermission.POST_NOTIFICATIONS)
     @OPermission_POST_NOTIFICATIONS
     fun requestPostNotificationPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener) {
-        if (UtilKBuildVersion.isAfterV_33_13_TIRAMISU()) {
+        if (UtilKBuildVersion.isAfterV_33_13_T()) {
             XXPermissions.with(context)
                 .permission(Permission.POST_NOTIFICATIONS)
 //            .interceptor(PermissionInterceptor())

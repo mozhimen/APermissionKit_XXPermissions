@@ -37,7 +37,7 @@ object XXPermissionsCheckUtil : IUtilK {
     @RequiresPermission(CPermission.POST_NOTIFICATIONS)
     @OPermission_POST_NOTIFICATIONS
     fun hasPostNotificationPermission(context: Context): Boolean =
-        (if (UtilKBuildVersion.isAfterV_33_13_TIRAMISU()) XXPermissions.isGranted(context, CPermission.POST_NOTIFICATIONS) else true).also { UtilKLogWrapper.d(TAG, "hasPostNotificationPermission: ") }
+        (if (UtilKBuildVersion.isAfterV_33_13_T()) XXPermissions.isGranted(context, CPermission.POST_NOTIFICATIONS) else true).also { UtilKLogWrapper.d(TAG, "hasPostNotificationPermission: ") }
 
     //是否有读写权限
     @JvmStatic
