@@ -16,6 +16,7 @@ import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_EXTERNAL_STO
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_WRITE_EXTERNAL_STORAGE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_SYSTEM_ALERT_WINDOW
 import com.mozhimen.kotlin.utilk.android.content.UtilKApplicationInfo
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.commons.IUtilK
@@ -128,6 +129,21 @@ object XXPermissionsRequestUtil : IUtilK {
             XXPermissions.with(context)
                 .permission(Permission.ACCESS_FINE_LOCATION)
                 .permission(Permission.ACCESS_COARSE_LOCATION)
+//            .interceptor(PermissionInterceptor())
+                .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied?.invoke() }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    //申请悬浮窗
+    @JvmStatic
+    @RequiresPermission(CPermission.SYSTEM_ALERT_WINDOW)
+    @OPermission_SYSTEM_ALERT_WINDOW
+    fun requestOverlayPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+        try {
+            XXPermissions.with(context)
+                .permission(Permission.SYSTEM_ALERT_WINDOW)
 //            .interceptor(PermissionInterceptor())
                 .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied?.invoke() }
         } catch (e: Exception) {
