@@ -12,6 +12,7 @@ import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_S
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_POST_NOTIFICATIONS
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_EXTERNAL_STORAGE
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_SYSTEM_ALERT_WINDOW
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_WRITE_EXTERNAL_STORAGE
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
@@ -72,4 +73,11 @@ object XXPermissionsCheckUtil : IUtilK {
     @OPermission_ACCESS_FINE_LOCATION
     fun hasLocationPermission(context: Context): Boolean =
         XXPermissions.isGranted(context, CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION)
+
+    //是否有悬浮窗
+    @JvmStatic
+    @RequiresPermission(CPermission.SYSTEM_ALERT_WINDOW)
+    @OPermission_SYSTEM_ALERT_WINDOW
+    fun hasOverlayPermission(context: Context): Boolean =
+        XXPermissions.isGranted(context, CPermission.SYSTEM_ALERT_WINDOW)
 }
