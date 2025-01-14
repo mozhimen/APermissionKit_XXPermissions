@@ -6,6 +6,8 @@ android {
 
     defaultConfig {
         minSdk 14
+
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     // 使用 JDK 1.8
@@ -40,7 +42,7 @@ android {
 //}
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.7.1'
+    implementation project(":ALibKit_Jetpack:annotation")
     implementation 'androidx.fragment:fragment:1.6.2'
     // noinspection GradleCompatible
     compileOnly 'com.android.support:support-fragment:24.2.0'
