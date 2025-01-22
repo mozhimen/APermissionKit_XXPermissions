@@ -9,7 +9,6 @@ android {
 
     defaultConfig {
         minSdk 19
-        targetSdk 33
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -33,9 +32,9 @@ android {
 
 dependencies {
     if (rootProject.name == "KUtilKit") {
-        implementation project(':utilk_android')
+        implementation project(':android')
     } else {
-        implementation project(':KUtilKit:utilk_android')
+        implementation project(':KUtilKit:android')
     }
     api project(project.path.replace(project.name, '') +':library')
 

@@ -1,4 +1,4 @@
-package com.mozhimen.manifestk.xxpermissions.test1
+package com.mozhimen.manifestk.xxpermissions.test
 
 import android.annotation.SuppressLint
 import android.content.Context
