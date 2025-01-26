@@ -305,7 +305,7 @@ final class PhoneRomUtils {
          return prop.getProperty(key, "");
       } catch (FileNotFoundException e) {
          // java.io.FileNotFoundException: /system/build.prop (Permission denied)
-         e.printStackTrace();
+//         e.printStackTrace();
       } catch (IOException e) {
          e.printStackTrace();
       }
