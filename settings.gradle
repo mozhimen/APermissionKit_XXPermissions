@@ -21,7 +21,7 @@ dependencyResolutionManagement {
 include ':exam'
 include ':test'
 include ':library'
-include ':manifestk_xxpermissions'
+include ':permissionk_xxpermissions'
 //ALibKit_Google
 include ':ALibKit_Google'
 project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")

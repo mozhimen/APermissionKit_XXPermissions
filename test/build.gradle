@@ -34,8 +34,7 @@ android {
 
 dependencies {
     implementation project(':ASwiftKit:basick')
-    implementation project(':manifestk_xxpermissions')
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation project(':permissionk_xxpermissions')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

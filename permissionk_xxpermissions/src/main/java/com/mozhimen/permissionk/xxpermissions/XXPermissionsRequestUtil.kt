@@ -1,4 +1,4 @@
-package com.mozhimen.manifestk.xxpermissions
+package com.mozhimen.permissionk.xxpermissions
 
 import android.content.Context
 import androidx.annotation.RequiresPermission
