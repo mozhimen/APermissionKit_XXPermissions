@@ -33,4 +33,9 @@ object XXPermissionsNavHostUtil {
     fun startSettingNotification(context: Context) {
         UtilKActivityStart.startSettingAppNotificationSettings(context)
     }
+
+    @JvmStatic
+    fun startSettingApplicationDetailsSettings(context: Context) {
+        UtilKActivityStart.startSettingApplicationDetailsSettings(context)
+    }
 }
