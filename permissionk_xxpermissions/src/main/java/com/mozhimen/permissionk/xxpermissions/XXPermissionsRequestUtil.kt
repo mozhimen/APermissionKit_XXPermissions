@@ -1,24 +1,30 @@
 package com.mozhimen.permissionk.xxpermissions
 
 import android.content.Context
+import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
-import com.hjq.permissions.XXPermissions
+import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
+import com.hjq.permissions.XXPermissions
+import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.commons.I_Listener
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_COARSE_LOCATION
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_BLUETOOTH_ADVERTISE
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_BLUETOOTH_CONNECT
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_BLUETOOTH_SCAN
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_CAMERA
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_GET_INSTALLED_APPS
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_POST_NOTIFICATIONS
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_EXTERNAL_STORAGE
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_WRITE_EXTERNAL_STORAGE
-import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_SYSTEM_ALERT_WINDOW
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_WRITE_EXTERNAL_STORAGE
 import com.mozhimen.kotlin.utilk.android.content.UtilKApplicationInfo
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
+import com.mozhimen.kotlin.utilk.android.os.UtilKHandlerWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
@@ -33,27 +39,37 @@ object XXPermissionsRequestUtil : IUtilK {
     @JvmStatic
     @RequiresPermission(CPermission.GET_INSTALLED_APPS)
     @OPermission_GET_INSTALLED_APPS
-    fun requestInstalledAppsPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener) {
-        XXPermissions.with(context)
-            .permission(Permission.GET_INSTALLED_APPS)
+    fun requestInstalledAppsPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+        try {
+            XXPermissions.with(context)
+                .permission(Permission.GET_INSTALLED_APPS)
 //            .interceptor(PermissionInterceptor())
-            .request { _, allGranted ->
-                if (allGranted) onGranted.invoke() else onDenied.invoke()
-            }
+                .request { _, allGranted ->
+                    if (allGranted) onGranted.invoke() else onDenied?.invoke()
+                }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            onDenied?.invoke()
+        }
     }
 
     //申请通知权限
     @JvmStatic
     @RequiresPermission(CPermission.POST_NOTIFICATIONS)
     @OPermission_POST_NOTIFICATIONS
-    fun requestPostNotificationPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener) {
-        if (UtilKBuildVersion.isAfterV_33_13_T()) {
-            XXPermissions.with(context)
-                .permission(Permission.POST_NOTIFICATIONS)
+    fun requestPostNotificationPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+        try {
+            if (UtilKBuildVersion.isAfterV_33_13_T()) {
+                XXPermissions.with(context)
+                    .permission(Permission.POST_NOTIFICATIONS)
 //            .interceptor(PermissionInterceptor())
-                .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied.invoke() }
-        } else
-            onGranted.invoke()
+                    .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied?.invoke() }
+            } else
+                onGranted.invoke()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            onDenied?.invoke()
+        }
     }
 
     //申请读写权限
@@ -89,19 +105,20 @@ object XXPermissionsRequestUtil : IUtilK {
     @JvmStatic
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     @OPermission_REQUEST_INSTALL_PACKAGES
-    fun requestInstallPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener) {
-        if (UtilKBuildVersion.isAfterV_23_6_M()) {
-            try {
+    fun requestInstallPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+        try {
+            if (UtilKBuildVersion.isAfterV_23_6_M()) {
+
                 XXPermissions.with(context)
                     .permission(Permission.REQUEST_INSTALL_PACKAGES)
 //            .interceptor(PermissionInterceptor())
-                    .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied.invoke() }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                onDenied.invoke()
-            }
-        } else
-            onGranted.invoke()
+                    .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied?.invoke() }
+            } else
+                onGranted.invoke()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            onDenied?.invoke()
+        }
     }
 
     //申请相机权限
@@ -116,6 +133,7 @@ object XXPermissionsRequestUtil : IUtilK {
                 .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied?.invoke() }
         } catch (e: Exception) {
             e.printStackTrace()
+            onDenied?.invoke()
         }
     }
 
@@ -133,6 +151,7 @@ object XXPermissionsRequestUtil : IUtilK {
                 .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied?.invoke() }
         } catch (e: Exception) {
             e.printStackTrace()
+            onDenied?.invoke()
         }
     }
 
@@ -148,6 +167,47 @@ object XXPermissionsRequestUtil : IUtilK {
                 .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied?.invoke() }
         } catch (e: Exception) {
             e.printStackTrace()
+            onDenied?.invoke()
+        }
+    }
+
+    //Android 6 及以下，旧版本的需要定位权限才能进行扫描蓝牙
+    //申请蓝牙
+    @JvmStatic
+    @RequiresApi(CVersCode.V_23_6_M)
+    @RequiresPermission(allOf = [CPermission.ACCESS_FINE_LOCATION, CPermission.ACCESS_COARSE_LOCATION])
+    @OPermission_ACCESS_COARSE_LOCATION
+    @OPermission_ACCESS_FINE_LOCATION
+    fun requestBluetoothPermission_after23(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+        try {
+            requestLocationPermission(context, onGranted, onDenied)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            onDenied?.invoke()
+        }
+    }
+
+    //Android 12 及以下，旧版本的需要定位权限才能进行扫描蓝牙
+    //申请蓝牙
+    @JvmStatic
+    @RequiresApi(CVersCode.V_31_12_S)
+    @RequiresPermission(allOf = [CPermission.BLUETOOTH_SCAN, CPermission.BLUETOOTH_CONNECT, CPermission.BLUETOOTH_ADVERTISE])
+    @OPermission_BLUETOOTH_SCAN
+    @OPermission_BLUETOOTH_CONNECT
+    @OPermission_BLUETOOTH_ADVERTISE
+    fun requestBluetoothPermission_after31(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+        try {
+            UtilKHandlerWrapper.postDelayed(2000) {
+                XXPermissions.with(context)
+                    .permission(Permission.BLUETOOTH_SCAN)
+                    .permission(Permission.BLUETOOTH_CONNECT)
+                    .permission(Permission.BLUETOOTH_ADVERTISE)
+//                        .interceptor(PermissionInterceptor())
+                    .request { _, allGranted -> if (allGranted) onGranted.invoke() else onDenied?.invoke() }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            onDenied?.invoke()
         }
     }
 }
