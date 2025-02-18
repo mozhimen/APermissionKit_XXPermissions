@@ -16,29 +16,29 @@ import com.mozhimen.kotlin.utilk.android.app.UtilKActivityStart
 object XXPermissionsNavHostUtil {
 
     //去设置页面详情页
-    @OPermission_MANAGE_EXTERNAL_STORAGE
-    @RequiresPermission(CPermission.MANAGE_EXTERNAL_STORAGE)
     @JvmStatic
     fun startSettingManageStorage(context: Context) {
-        UtilKActivityStart.startSettingManageAllFilesAccessPermission(context)
+        UtilKActivityStart.startSettingsManageAllFilesAccessPermission(context)
     }
 
     //去设置未知源页
     @JvmStatic
     fun startSettingInstall(context: Context) {
-        UtilKActivityStart.startSettingManageUnknownInstallSource(context)
+        UtilKActivityStart.startSettingsManageUnknownInstallSource(context)
     }
 
     @JvmStatic
     fun startSettingNotification(context: Context) {
-        UtilKActivityStart.startSettingAppNotificationSettings(context)
+        UtilKActivityStart.startSettingsAppNotificationSettings(context)
     }
 
     @JvmStatic
     fun startSettingApplicationDetailsSettings(context: Context) {
-        UtilKActivityStart.startSettingApplicationDetailsSettings(context)
+        UtilKActivityStart.startSettingsApplicationDetailsSettings(context)
     }
 
     @JvmStatic
-    fun start
+    fun startBluetoothAdapterRequestEnable(context: Context) {
+        UtilKActivityStart.startBluetoothAdapterRequestEnable(context)
+    }
 }
