@@ -1,11 +1,16 @@
 package com.mozhimen.permissionk.xxpermissions
 
 import android.content.Context
+import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import com.hjq.permissions.XXPermissions
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
+import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_COARSE_LOCATION
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_BLUETOOTH_ADVERTISE
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_BLUETOOTH_CONNECT
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_BLUETOOTH_SCAN
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_CAMERA
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_GET_INSTALLED_APPS
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
@@ -30,14 +35,14 @@ object XXPermissionsCheckUtil : IUtilK {
     @JvmStatic
     @RequiresPermission(CPermission.GET_INSTALLED_APPS)
     @OPermission_GET_INSTALLED_APPS
-    fun hasInstalledAppsPermission(context: Context): Boolean =
+    fun hasPermission_GET_INSTALLED_APPS(context: Context): Boolean =
         XXPermissions.isGranted(context, CPermission.GET_INSTALLED_APPS)
 
     //是否有通知权限
     @JvmStatic
     @RequiresPermission(CPermission.POST_NOTIFICATIONS)
     @OPermission_POST_NOTIFICATIONS
-    fun hasPostNotificationPermission(context: Context): Boolean =
+    fun hasPermission_POST_NOTIFICATIONS(context: Context): Boolean =
         (if (UtilKBuildVersion.isAfterV_33_13_T()) XXPermissions.isGranted(context, CPermission.POST_NOTIFICATIONS) else true).also { UtilKLogWrapper.d(TAG, "hasPostNotificationPermission: ") }
 
     //是否有读写权限
@@ -46,7 +51,7 @@ object XXPermissionsCheckUtil : IUtilK {
     @OPermission_READ_EXTERNAL_STORAGE
     @OPermission_WRITE_EXTERNAL_STORAGE
     @OPermission_MANAGE_EXTERNAL_STORAGE
-    fun hasReadWritePermission(context: Context): Boolean =
+    fun hasPermission_EXTERNAL_STORAGE(context: Context): Boolean =
         if (UtilKBuildVersion.isAfterV_30_11_R())
             XXPermissions.isGranted(context, CPermission.MANAGE_EXTERNAL_STORAGE)
         else
@@ -56,14 +61,14 @@ object XXPermissionsCheckUtil : IUtilK {
     @JvmStatic
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     @OPermission_REQUEST_INSTALL_PACKAGES
-    fun hasInstallPermission(context: Context): Boolean =
+    fun hasPermission_REQUEST_INSTALL_PACKAGES(context: Context): Boolean =
         if (UtilKBuildVersion.isAfterV_23_6_M()) XXPermissions.isGranted(context, CPermission.REQUEST_INSTALL_PACKAGES) else true
 
     //是否有相机权限
     @JvmStatic
     @RequiresPermission(allOf = [CPermission.CAMERA])
     @OPermission_CAMERA
-    fun hasCameraPermission(context: Context): Boolean =
+    fun hasPermission_CAMERA(context: Context): Boolean =
         XXPermissions.isGranted(context, CPermission.CAMERA)
 
     //是否有位置权限
@@ -71,13 +76,31 @@ object XXPermissionsCheckUtil : IUtilK {
     @RequiresPermission(allOf = [CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION])
     @OPermission_ACCESS_COARSE_LOCATION
     @OPermission_ACCESS_FINE_LOCATION
-    fun hasLocationPermission(context: Context): Boolean =
+    fun hasPermission_LOCATION(context: Context): Boolean =
         XXPermissions.isGranted(context, CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION)
 
     //是否有悬浮窗
     @JvmStatic
     @RequiresPermission(CPermission.SYSTEM_ALERT_WINDOW)
     @OPermission_SYSTEM_ALERT_WINDOW
-    fun hasOverlayPermission(context: Context): Boolean =
+    fun hasPermission_SYSTEM_ALERT_WINDOW(context: Context): Boolean =
         XXPermissions.isGranted(context, CPermission.SYSTEM_ALERT_WINDOW)
+
+    //是否有蓝牙权限
+    @JvmStatic
+    @RequiresApi(CVersCode.V_23_6_M)
+    @RequiresPermission(allOf = [CPermission.ACCESS_FINE_LOCATION, CPermission.ACCESS_COARSE_LOCATION])
+    @OPermission_ACCESS_COARSE_LOCATION
+    @OPermission_ACCESS_FINE_LOCATION
+    fun hasPermission_BLUETOOTH_aftter23(context: Context):Boolean=
+        hasPermission_LOCATION(context)
+
+    @JvmStatic
+    @RequiresApi(CVersCode.V_31_12_S)
+    @RequiresPermission(allOf = [CPermission.BLUETOOTH_SCAN, CPermission.BLUETOOTH_CONNECT, CPermission.BLUETOOTH_ADVERTISE])
+    @OPermission_BLUETOOTH_SCAN
+    @OPermission_BLUETOOTH_CONNECT
+    @OPermission_BLUETOOTH_ADVERTISE
+    fun hasPermission_BLUETOOTH_aftter31(context: Context):Boolean=
+        XXPermissions.isGranted(context, CPermission.BLUETOOTH_SCAN, CPermission.BLUETOOTH_CONNECT, CPermission.BLUETOOTH_ADVERTISE)
 }

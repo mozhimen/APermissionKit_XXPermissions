@@ -3,7 +3,6 @@ package com.mozhimen.permissionk.xxpermissions
 import android.content.Context
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
-import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
@@ -39,7 +38,7 @@ object XXPermissionsRequestUtil : IUtilK {
     @JvmStatic
     @RequiresPermission(CPermission.GET_INSTALLED_APPS)
     @OPermission_GET_INSTALLED_APPS
-    fun requestInstalledAppsPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+    fun requestPermission_GET_INSTALLED_APPS(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             XXPermissions.with(context)
                 .permission(Permission.GET_INSTALLED_APPS)
@@ -57,7 +56,7 @@ object XXPermissionsRequestUtil : IUtilK {
     @JvmStatic
     @RequiresPermission(CPermission.POST_NOTIFICATIONS)
     @OPermission_POST_NOTIFICATIONS
-    fun requestPostNotificationPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+    fun requestPermission_POST_NOTIFICATIONS(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             if (UtilKBuildVersion.isAfterV_33_13_T()) {
                 XXPermissions.with(context)
@@ -79,7 +78,7 @@ object XXPermissionsRequestUtil : IUtilK {
     @OPermission_WRITE_EXTERNAL_STORAGE
     @OPermission_READ_EXTERNAL_STORAGE
     @OPermission_MANAGE_EXTERNAL_STORAGE
-    fun requestReadWritePermission(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+    fun requestPermission_EXTERNAL_STORAGE(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             if (UtilKApplicationInfo.getTargetSdkVersion(context) >= CVersCode.V_30_11_R) {
                 XXPermissions.with(context) // 适配分区存储应该这样写
@@ -105,7 +104,7 @@ object XXPermissionsRequestUtil : IUtilK {
     @JvmStatic
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     @OPermission_REQUEST_INSTALL_PACKAGES
-    fun requestInstallPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+    fun requestPermission_REQUEST_INSTALL_PACKAGES(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             if (UtilKBuildVersion.isAfterV_23_6_M()) {
 
@@ -125,7 +124,7 @@ object XXPermissionsRequestUtil : IUtilK {
     @JvmStatic
     @RequiresPermission(CPermission.CAMERA)
     @OPermission_CAMERA
-    fun requestCameraPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+    fun requestPermission_CAMERA(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             XXPermissions.with(context)
                 .permission(Permission.CAMERA)
@@ -142,7 +141,7 @@ object XXPermissionsRequestUtil : IUtilK {
     @RequiresPermission(allOf = [CPermission.ACCESS_FINE_LOCATION, CPermission.ACCESS_COARSE_LOCATION])
     @OPermission_ACCESS_COARSE_LOCATION
     @OPermission_ACCESS_FINE_LOCATION
-    fun requestLocationPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+    fun requestPermission_LOCATION(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             XXPermissions.with(context)
                 .permission(Permission.ACCESS_FINE_LOCATION)
@@ -159,7 +158,7 @@ object XXPermissionsRequestUtil : IUtilK {
     @JvmStatic
     @RequiresPermission(CPermission.SYSTEM_ALERT_WINDOW)
     @OPermission_SYSTEM_ALERT_WINDOW
-    fun requestOverlayPermission(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+    fun requestPermission_SYSTEM_ALERT_WINDOW(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             XXPermissions.with(context)
                 .permission(Permission.SYSTEM_ALERT_WINDOW)
@@ -178,13 +177,8 @@ object XXPermissionsRequestUtil : IUtilK {
     @RequiresPermission(allOf = [CPermission.ACCESS_FINE_LOCATION, CPermission.ACCESS_COARSE_LOCATION])
     @OPermission_ACCESS_COARSE_LOCATION
     @OPermission_ACCESS_FINE_LOCATION
-    fun requestBluetoothPermission_after23(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
-        try {
-            requestLocationPermission(context, onGranted, onDenied)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            onDenied?.invoke()
-        }
+    fun requestPermission_BLUETOOTH_after23(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+        requestPermission_LOCATION(context, onGranted, onDenied)
     }
 
     //Android 12 及以下，旧版本的需要定位权限才能进行扫描蓝牙
@@ -195,7 +189,7 @@ object XXPermissionsRequestUtil : IUtilK {
     @OPermission_BLUETOOTH_SCAN
     @OPermission_BLUETOOTH_CONNECT
     @OPermission_BLUETOOTH_ADVERTISE
-    fun requestBluetoothPermission_after31(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
+    fun requestPermission_BLUETOOTH_after31(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             UtilKHandlerWrapper.postDelayed(2000) {
                 XXPermissions.with(context)

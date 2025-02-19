@@ -1,9 +1,6 @@
 package com.mozhimen.permissionk.xxpermissions
 
 import android.content.Context
-import androidx.annotation.RequiresPermission
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
-import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityStart
 
 /**
@@ -17,28 +14,28 @@ object XXPermissionsNavHostUtil {
 
     //去设置页面详情页
     @JvmStatic
-    fun startSettingManageStorage(context: Context) {
+    fun startPermission_EXTERNAL_STORAGE(context: Context) {
         UtilKActivityStart.startSettingsManageAllFilesAccessPermission(context)
     }
 
     //去设置未知源页
     @JvmStatic
-    fun startSettingInstall(context: Context) {
+    fun startPermission_REQUEST_INSTALL_PACKAGES(context: Context) {
         UtilKActivityStart.startSettingsManageUnknownInstallSource(context)
     }
 
     @JvmStatic
-    fun startSettingNotification(context: Context) {
+    fun startPermission_POST_NOTIFICATIONS(context: Context) {
         UtilKActivityStart.startSettingsAppNotificationSettings(context)
     }
 
     @JvmStatic
-    fun startSettingApplicationDetailsSettings(context: Context) {
-        UtilKActivityStart.startSettingsApplicationDetailsSettings(context)
+    fun startPermission_BLUETOOTH(context: Context) {
+        UtilKActivityStart.startBluetoothAdapterRequestEnable(context)
     }
 
     @JvmStatic
-    fun startBluetoothAdapterRequestEnable(context: Context) {
-        UtilKActivityStart.startBluetoothAdapterRequestEnable(context)
+    fun startPermission_DEFAULT(context: Context) {
+        UtilKActivityStart.startSettingsApplicationDetailsSettings(context)
     }
 }
