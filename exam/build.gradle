@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     namespace "com.hjq.permissions.demo"
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.hjq.permissions.demo"

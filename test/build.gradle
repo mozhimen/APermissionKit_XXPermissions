@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.mozhimen.manifestk.xxpermissions.test'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.mozhimen.manifestk.xxpermissions.test1"
