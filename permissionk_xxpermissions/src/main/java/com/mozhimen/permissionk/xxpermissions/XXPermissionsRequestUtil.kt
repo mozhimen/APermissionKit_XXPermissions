@@ -8,19 +8,19 @@ import com.hjq.permissions.XXPermissions
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.commons.I_Listener
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_COARSE_LOCATION
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_BLUETOOTH_ADVERTISE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_BLUETOOTH_CONNECT
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_BLUETOOTH_SCAN
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_CAMERA
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_GET_INSTALLED_APPS
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_POST_NOTIFICATIONS
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_EXTERNAL_STORAGE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_SYSTEM_ALERT_WINDOW
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_WRITE_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_ACCESS_COARSE_LOCATION
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_ACCESS_FINE_LOCATION
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_BLUETOOTH_ADVERTISE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_BLUETOOTH_CONNECT
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_BLUETOOTH_SCAN
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_CAMERA
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_GET_INSTALLED_APPS
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_MANAGE_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_POST_NOTIFICATIONS
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_REQUEST_INSTALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_SYSTEM_ALERT_WINDOW
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_WRITE_EXTERNAL_STORAGE
 import com.mozhimen.kotlin.utilk.android.content.UtilKApplicationInfo
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.os.UtilKHandlerWrapper
@@ -37,7 +37,7 @@ object XXPermissionsRequestUtil : IUtilK {
     //申请获取程序包名权限
     @JvmStatic
     @RequiresPermission(CPermission.GET_INSTALLED_APPS)
-    @OPermission_GET_INSTALLED_APPS
+    @OUsesPermission_GET_INSTALLED_APPS
     fun requestPermission_GET_INSTALLED_APPS(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             XXPermissions.with(context)
@@ -55,7 +55,7 @@ object XXPermissionsRequestUtil : IUtilK {
     //申请通知权限
     @JvmStatic
     @RequiresPermission(CPermission.POST_NOTIFICATIONS)
-    @OPermission_POST_NOTIFICATIONS
+    @OUsesPermission_POST_NOTIFICATIONS
     fun requestPermission_POST_NOTIFICATIONS(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             if (UtilKBuildVersion.isAfterV_33_13_T()) {
@@ -75,9 +75,9 @@ object XXPermissionsRequestUtil : IUtilK {
 
     @JvmStatic
     @RequiresPermission(allOf = [CPermission.MANAGE_EXTERNAL_STORAGE, CPermission.WRITE_EXTERNAL_STORAGE, CPermission.READ_EXTERNAL_STORAGE])
-    @OPermission_WRITE_EXTERNAL_STORAGE
-    @OPermission_READ_EXTERNAL_STORAGE
-    @OPermission_MANAGE_EXTERNAL_STORAGE
+    @OUsesPermission_WRITE_EXTERNAL_STORAGE
+    @OUsesPermission_READ_EXTERNAL_STORAGE
+    @OUsesPermission_MANAGE_EXTERNAL_STORAGE
     fun requestPermission_EXTERNAL_STORAGE(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             if (UtilKApplicationInfo.getTargetSdkVersion(context) >= CVersCode.V_30_11_R) {
@@ -103,7 +103,7 @@ object XXPermissionsRequestUtil : IUtilK {
     //申请安装权限
     @JvmStatic
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
-    @OPermission_REQUEST_INSTALL_PACKAGES
+    @OUsesPermission_REQUEST_INSTALL_PACKAGES
     fun requestPermission_REQUEST_INSTALL_PACKAGES(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             if (UtilKBuildVersion.isAfterV_23_6_M()) {
@@ -123,7 +123,7 @@ object XXPermissionsRequestUtil : IUtilK {
     //申请相机权限
     @JvmStatic
     @RequiresPermission(CPermission.CAMERA)
-    @OPermission_CAMERA
+    @OUsesPermission_CAMERA
     fun requestPermission_CAMERA(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             XXPermissions.with(context)
@@ -139,8 +139,8 @@ object XXPermissionsRequestUtil : IUtilK {
     //申请位置
     @JvmStatic
     @RequiresPermission(allOf = [CPermission.ACCESS_FINE_LOCATION, CPermission.ACCESS_COARSE_LOCATION])
-    @OPermission_ACCESS_COARSE_LOCATION
-    @OPermission_ACCESS_FINE_LOCATION
+    @OUsesPermission_ACCESS_COARSE_LOCATION
+    @OUsesPermission_ACCESS_FINE_LOCATION
     fun requestPermission_LOCATION(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             XXPermissions.with(context)
@@ -157,7 +157,7 @@ object XXPermissionsRequestUtil : IUtilK {
     //申请悬浮窗
     @JvmStatic
     @RequiresPermission(CPermission.SYSTEM_ALERT_WINDOW)
-    @OPermission_SYSTEM_ALERT_WINDOW
+    @OUsesPermission_SYSTEM_ALERT_WINDOW
     fun requestPermission_SYSTEM_ALERT_WINDOW(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             XXPermissions.with(context)
@@ -175,8 +175,8 @@ object XXPermissionsRequestUtil : IUtilK {
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
     @RequiresPermission(allOf = [CPermission.ACCESS_FINE_LOCATION, CPermission.ACCESS_COARSE_LOCATION])
-    @OPermission_ACCESS_COARSE_LOCATION
-    @OPermission_ACCESS_FINE_LOCATION
+    @OUsesPermission_ACCESS_COARSE_LOCATION
+    @OUsesPermission_ACCESS_FINE_LOCATION
     fun requestPermission_BLUETOOTH_after23(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         requestPermission_LOCATION(context, onGranted, onDenied)
     }
@@ -186,9 +186,9 @@ object XXPermissionsRequestUtil : IUtilK {
     @JvmStatic
     @RequiresApi(CVersCode.V_31_12_S)
     @RequiresPermission(allOf = [CPermission.BLUETOOTH_SCAN, CPermission.BLUETOOTH_CONNECT, CPermission.BLUETOOTH_ADVERTISE])
-    @OPermission_BLUETOOTH_SCAN
-    @OPermission_BLUETOOTH_CONNECT
-    @OPermission_BLUETOOTH_ADVERTISE
+    @OUsesPermission_BLUETOOTH_SCAN
+    @OUsesPermission_BLUETOOTH_CONNECT
+    @OUsesPermission_BLUETOOTH_ADVERTISE
     fun requestPermission_BLUETOOTH_after31(context: Context, onGranted: I_Listener, onDenied: I_Listener? = null) {
         try {
             UtilKHandlerWrapper.postDelayed(2000) {

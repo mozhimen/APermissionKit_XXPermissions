@@ -3,10 +3,10 @@ package com.mozhimen.permissionk.xxpermissions.test
 import android.annotation.SuppressLint
 import android.content.Context
 import com.mozhimen.kotlin.elemk.commons.I_Listener
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_EXTERNAL_STORAGE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_WRITE_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_MANAGE_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_REQUEST_INSTALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_WRITE_EXTERNAL_STORAGE
 import com.mozhimen.permissionk.xxpermissions.XXPermissionsCheckUtil
 import com.mozhimen.permissionk.xxpermissions.XXPermissionsNavHostUtil
 import com.mozhimen.permissionk.xxpermissions.XXPermissionsRequestUtil
@@ -28,7 +28,7 @@ object PermissionChecker {
         }
     }
 
-    @OptIn(OPermission_REQUEST_INSTALL_PACKAGES::class)
+    @OptIn(OUsesPermission_REQUEST_INSTALL_PACKAGES::class)
     @SuppressLint("MissingPermission")
     @JvmStatic
     fun startPermissionInstall(context: Context, allGrant: I_Listener? = null) {
@@ -48,7 +48,7 @@ object PermissionChecker {
         }
     }
 
-    @OptIn(OPermission_READ_EXTERNAL_STORAGE::class, OPermission_WRITE_EXTERNAL_STORAGE::class, OPermission_MANAGE_EXTERNAL_STORAGE::class)
+    @OptIn(OUsesPermission_READ_EXTERNAL_STORAGE::class, OUsesPermission_WRITE_EXTERNAL_STORAGE::class, OUsesPermission_MANAGE_EXTERNAL_STORAGE::class)
     @SuppressLint("MissingPermission")
     @JvmStatic
     fun startPermissionReadWrite(context: Context, allGrant: I_Listener? = null) {
