@@ -42,10 +42,9 @@ android {
 //}
 
 dependencies {
-    implementation project(":ALibKit_Jetpack:annotation")
+    implementation 'com.github.mozhimen.ALibKit_Jetpack:annotation:0.0.7'
     implementation 'androidx.fragment:fragment:1.6.2'
-    // noinspection GradleCompatible
-    compileOnly 'com.android.support:support-fragment:24.2.0'
+    compileOnly 'com.android.support:support-fragment:24.2.0'// noinspection GradleCompatible
 }
 
 tasks.withType(Javadoc).configureEach {
