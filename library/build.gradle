@@ -6,6 +6,7 @@ android {
 
     defaultConfig {
         minSdk 14
+        multiDexEnabled true
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -14,10 +15,6 @@ android {
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
-    }
-
-    lintOptions {
-        abortOnError false
     }
 
     android.libraryVariants.configureEach { variant ->
@@ -31,6 +28,10 @@ android {
         // 剔除这个包下的所有文件（不会移除签名信息）
         exclude 'META-INF/*******'
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 //afterEvaluate {
@@ -43,7 +44,7 @@ android {
 
 dependencies {
     implementation 'com.github.mozhimen.ALibKit_Jetpack:annotation:0.0.7'
-    implementation 'androidx.fragment:fragment:1.6.2'
+    implementation 'com.github.mozhimen.ALibKit_Jetpack:fragment-bom:0.0.7'
     compileOnly 'com.android.support:support-fragment:24.2.0'// noinspection GradleCompatible
 }
 

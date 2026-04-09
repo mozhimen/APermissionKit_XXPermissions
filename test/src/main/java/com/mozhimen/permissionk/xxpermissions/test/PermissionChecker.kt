@@ -32,16 +32,16 @@ object PermissionChecker {
     @SuppressLint("MissingPermission")
     @JvmStatic
     fun startPermissionInstall(context: Context, allGrant: I_Listener? = null) {
-        if (XXPermissionsCheckUtil.hasInstallPermission(context)) {
+        if (XXPermissionsCheckUtil.hasPermission_REQUEST_INSTALL_PACKAGES(context)) {
             allGrant?.invoke()
         } else {
 //            showDialogInstallPermission(context) {
-            XXPermissionsRequestUtil.requestInstallPermission(context,
+            XXPermissionsRequestUtil.requestPermission_REQUEST_INSTALL_PACKAGES(context,
                 onGranted = {
                     allGrant?.invoke()
                 },
                 onDenied = {
-                    XXPermissionsNavHostUtil.startSettingInstall(context)
+                    XXPermissionsNavHostUtil.startPermission_REQUEST_INSTALL_PACKAGES(context)
                 }
             )
 //            }
@@ -52,16 +52,16 @@ object PermissionChecker {
     @SuppressLint("MissingPermission")
     @JvmStatic
     fun startPermissionReadWrite(context: Context, allGrant: I_Listener? = null) {
-        if (XXPermissionsCheckUtil.hasReadWritePermission(context)) {
+        if (XXPermissionsCheckUtil.hasPermission_EXTERNAL_STORAGE(context)) {
             allGrant?.invoke()
         } else {
 //            showDialogReadWritePermission(context) {
-            XXPermissionsRequestUtil.requestReadWritePermission(context,
+            XXPermissionsRequestUtil.requestPermission_EXTERNAL_STORAGE(context,
                 onGranted = {
                     allGrant?.invoke()
                 },
                 onDenied = {
-                    XXPermissionsNavHostUtil.startSettingManageStorage(context)
+                    XXPermissionsNavHostUtil.startPermission_EXTERNAL_STORAGE(context)
                 }
             )
 //            }

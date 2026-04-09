@@ -31,12 +31,8 @@ android {
 }
 
 dependencies {
-    if (rootProject.name == "KUtilKit") {
-        implementation project(':android')
-    } else {
-        implementation 'com.github.mozhimen.KUtilKit:android:0.0.2'
-    }
-    api project(project.path.replace(project.name, '') +':library')
+    implementation 'com.github.mozhimen.KUtilKit:android:0.0.3'
+    api project(project.path.replace(project.name, '') + ':library')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

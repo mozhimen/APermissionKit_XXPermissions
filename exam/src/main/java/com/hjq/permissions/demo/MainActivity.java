@@ -16,7 +16,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper;
 import android.view.View;
 
