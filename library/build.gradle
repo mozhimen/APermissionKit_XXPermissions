@@ -17,12 +17,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
 
-    android.libraryVariants.configureEach { variant ->
-        // aar 输出文件名配置
-        variant.outputs.configureEach { output ->
-            outputFileName = "${rootProject.name}-${android.defaultConfig.versionName}.aar"
-        }
-    }
+//    android.libraryVariants.configureEach { variant ->
+//        // aar 输出文件名配置
+//        variant.outputs.configureEach { output ->
+//            outputFileName = "${rootProject.name}-${android.defaultConfig.versionName}.aar"
+//        }
+//    }
 
     packagingOptions {
         // 剔除这个包下的所有文件（不会移除签名信息）
