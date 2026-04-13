@@ -57,7 +57,7 @@ dependencies {
 
     implementation project(':library')
 
-    implementation 'com.github.mozhimen.ASwiftKit:basick:2.0.4'
+    implementation 'com.github.mozhimen.ASwiftKit:basick:2.1.6'
 
     // 吐司框架：https://github.com/getActivity/Toaster
     implementation 'com.github.getActivity:Toaster:12.5'

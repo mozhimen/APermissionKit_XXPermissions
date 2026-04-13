@@ -33,7 +33,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.mozhimen.ASwiftKit:basick:2.0.4'
+    implementation 'com.github.mozhimen.ASwiftKit:basick:2.1.6'
     implementation project(':permissionk_xxpermissions')
 
     testImplementation 'junit:junit:4.13.2'
